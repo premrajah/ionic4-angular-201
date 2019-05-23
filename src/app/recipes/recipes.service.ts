@@ -5,7 +5,6 @@ import { Recipe } from './recipe.model';
   providedIn: 'root'
 })
 export class RecipesService {
-
   private recipes: Recipe[] = [
     {
       id: 'r1',
@@ -16,12 +15,13 @@ export class RecipesService {
     {
       id: 'r2',
       title: 'Meatballs',
-      imageUrl: 'https://keviniscooking.com/wp-content/uploads/2018/01/How-to-Make-Classic-Beef-Meatballs-square.jpg',
+      imageUrl:
+        'https://keviniscooking.com/wp-content/uploads/2018/01/How-to-Make-Classic-Beef-Meatballs-square.jpg',
       ingredients: ['Beaf', 'Noodles', 'Pork', 'Salad']
     }
   ];
 
-  constructor() { }
+  constructor() {}
 
   getAllRecipes() {
     return [...this.recipes];
@@ -29,9 +29,15 @@ export class RecipesService {
 
   getRecipe(recipeId: string) {
     return {
-      ...this.recipes.find( recipe => {
+      ...this.recipes.find(recipe => {
         return recipe.id === recipeId;
       })
     };
+  }
+
+  deleteRecipe(recipeId: string) {
+    this.recipes = this.recipes.filter(recipe => {
+      return recipe.id !== recipeId;
+    });
   }
 }
